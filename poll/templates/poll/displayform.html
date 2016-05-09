@@ -1,0 +1,48 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+	
+	<h1><font face = "georgia">Enter the details mentioned below </font></h1>
+
+	<form id = "detailform" method="post" action="/dummy/">
+	{% csrf_token %}
+	<font face="georgia">Username: </font><input type="text" name="user_name" value="" size="50" /> 
+		<br />
+	<font face="georgia">User ID: </font><input type="text" name="user_ID" value="" size="50" /> 
+		<br />
+	<font face="georgia">Organization ID: </font><input type="text" name="org_ID" value="" size="50" /> 
+		<br />
+	<font face="georgia">Food ID(s) (separate them with a ',' ): </font><input type="text" name="food_ID" value="" size="50" /> 
+		<br />
+	<input type="submit" value="submit" />
+	</form>
+	<br>
+	<br>
+	<h3>IDs of different types of food items :- </h3>
+	<table>
+	<tr>
+		<th>ID </th>
+		<th>Food item </th>
+	</tr>
+	<tr>
+		<td> 1 </td>
+		<td> Idli-Sambhar</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Dosa</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>Uttapam</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>Cornflakes</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>Burger</td>
+	</tr>
+	</table>
+{% endblock %}
