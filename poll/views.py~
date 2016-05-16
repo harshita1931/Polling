@@ -41,9 +41,6 @@ def dummy(request):
 
 	selectedfoods = temp
 	selectedfoods_size = len(selectedfoods)
-	if PreferenceTable.objects.all().filter(userID=request.user.id).count() > 0:
-			PreferenceTable.objects.filter(userID=request.user.id).delete()
-			
 	for i in range(0, selectedfoods_size):
 		food_ID = FoodItemTable.objects.all().filter(foodName=selectedfoods[i]).values('id')
 		PreferenceTable_insertobj = PreferenceTable.objects.create(userID_id=user_ID1, foodID_id=food_ID[0]['id'])
@@ -71,7 +68,9 @@ def results(request):
 	temp_list = []
 
 	pollresult_size = len(pollresult)
+	print pollresult_size
 	for i in range(0, pollresult_size):
+		print(pollresult[i])
 		temp_dict = {}
 		temp_dict['count'] = pollresult[i]['count1']
 		nameOFfood = FoodItemTable.objects.all().filter(id=pollresult[i]['foodID']).values('foodName')  
@@ -80,6 +79,7 @@ def results(request):
 
 	results = []
 	results = temp_list
+	print results
 	return render(request, 'poll/results1.html', {'results':results})
 
 	
@@ -152,8 +152,14 @@ def user_orgName_form(request):
 @transaction.atomic
 def user_orgName(request):
 	if request.method == 'POST':
+		print request.POST
+		print request.POST['organization_name']
 		org_form = UserExtraDetails(organizationName=request.POST['organization_name'], userID= request.user)
-		org_form.save()
+		
+		if org_form.is_valid():
+			org.save()
+		else:
+			print org_form.errors  
 	else:
 		org_form = UserOrganizationForm()
 	return HttpResponseRedirect('/')		

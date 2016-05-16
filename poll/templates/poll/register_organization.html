@@ -1,0 +1,21 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+    <h1>Register Organization Name</h1>
+
+    <form id="org_form" method="post" action="/org_dummy/"
+            enctype="multipart/form-data">
+             {% csrf_token %}
+        <font face="georgia">Select your Organization name: </font>
+    <select name="organization_name">
+        {% for organizationName in organizationNames_list %}
+            <option value="{{ organizationName }}">{{ organizationName }}</option>
+
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <input type="submit" name="submit" value="submit" />
+
+    </form>
+{% endblock %}

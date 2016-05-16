@@ -1,0 +1,19 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+
+	<h2> Results of the poll</h2>
+	<table>
+		<tr>
+			<th>Food ID </th>
+			<th>No. of votes </th>
+		</tr>
+		{% for i in foodPollOrdered_foodIDlist %}
+		<tr>
+			<td>{{ i }}</td>
+			<td>{{ foodPollOrdered_dict.i.value }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+{% endblock %}

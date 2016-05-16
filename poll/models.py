@@ -3,12 +3,19 @@ from django.utils import timezone
 
 # Create your models here.
 
-class MainTable(models.Model):
-	userID = models.IntegerField()
-	username = models.CharField(max_length=500)
-	organizationID = models.IntegerField()
-
-
 class PreferenceTable(models.Model):
-	userID = models.ForeignKey('MainTable')		
-	foodID = models.IntegerField()
+	userID = models.ForeignKey('auth.User')		
+	foodID = models.ForeignKey('FoodItemTable')
+
+
+class OrganizationTable(models.Model):
+	organizationName = models.CharField(max_length=500) 
+
+
+class FoodItemTable(models.Model):
+	foodName = models.CharField(max_length=500)
+
+
+class UserExtraDetails(models.Model):
+	userID = models.ForeignKey('auth.User')
+	organizationName = models.CharField(max_length=500)
